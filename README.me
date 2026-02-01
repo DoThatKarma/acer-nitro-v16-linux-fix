@@ -1,0 +1,180 @@
+# Acer Nitro V16 (ANV16-41) Linux GPU & Fan Fix
+
+Fix for fans running at full speed on Acer Nitro V16 (N24C4) with AMD Ryzen + NVIDIA GPU on Linux, especially after switching desktop environments (Cinnamon/GNOME).
+
+## Problem
+
+After switching between desktop environments or fresh Linux install, the NVIDIA GPU stays active constantly, causing:
+- Fans running at maximum speed constantly
+- High temperatures even when idle
+- Poor battery life
+- System feeling sluggish
+
+## Solution
+
+This script configures hybrid GPU mode properly, ensuring the AMD integrated GPU is used by default and NVIDIA GPU only activates when needed for gaming/intensive tasks.
+
+## Compatibility
+
+**Tested on:**
+- Acer Nitro V16 (ANV16-41 / N24C4)
+- AMD Ryzen + NVIDIA GPU hybrid graphics
+- Linux Mint / Ubuntu / Debian-based distros
+- Cinnamon, GNOME, and other desktop environments
+
+**Should work on:**
+- Other Acer Nitro V series with AMD + NVIDIA
+- Similar hybrid GPU laptops
+
+## Installation
+
+### Quick Install (One-liner)
+```bash
+wget https://raw.githubusercontent.com/YOUR_USERNAME/acer-nitro-v16-linux-fix/main/fix-nitro-gpu.sh && chmod +x fix-nitro-gpu.sh && ./fix-nitro-gpu.sh
+```
+
+### Manual Install
+
+1. Download the script:
+```bash
+git clone https://github.com/YOUR_USERNAME/acer-nitro-v16-linux-fix.git
+cd acer-nitro-v16-linux-fix
+```
+
+2. Make it executable:
+```bash
+chmod +x fix-nitro-gpu.sh
+```
+
+3. Run the script:
+```bash
+./fix-nitro-gpu.sh
+```
+
+4. Reboot when prompted
+
+## What It Does
+
+1. ✅ Installs GPU management tools (nvidia-prime, TLP)
+2. ✅ Sets GPU to on-demand (hybrid) mode
+3. ✅ Configures TLP for optimal laptop power management
+4. ✅ Fixes Cinnamon compositor GPU settings
+5. ✅ Configures system to use AMD iGPU by default
+6. ✅ Adds helper commands for running apps with NVIDIA GPU
+
+## After Installation
+
+### Normal Usage (Quiet & Cool)
+Just use your laptop normally. The AMD integrated GPU will handle everything, keeping fans quiet and temps low.
+
+### Gaming (Full Performance)
+Launch games with the NVIDIA GPU:
+```bash
+# For Steam games
+nvidia-run steam
+
+# For other games/apps
+nvidia-run ./game-executable
+
+# Alternative
+nvidia-offload your-game-command
+```
+
+### Check GPU Status
+```bash
+# Check which GPU mode is active
+prime-select query
+
+# Check if NVIDIA GPU is currently in use
+nvidia-smi
+
+# Monitor temperatures
+watch -n 1 sensors
+```
+
+## Troubleshooting
+
+### Fans still running full speed?
+```bash
+# Check if NVIDIA GPU is active
+nvidia-smi
+
+# If it shows processes, something is using the GPU
+# Kill unnecessary processes or reboot
+```
+
+### Want to always use NVIDIA GPU?
+```bash
+sudo prime-select nvidia
+sudo reboot
+```
+
+### Want to disable NVIDIA GPU completely?
+```bash
+sudo prime-select intel  # Uses AMD iGPU only
+sudo reboot
+```
+
+### Revert all changes
+```bash
+sudo apt remove tlp tlp-rdw
+sudo rm /etc/tlp.conf
+sudo rm /etc/environment.d/50-nvidia-prime.conf
+sudo prime-select on-demand
+```
+
+## Additional Fan Control (Optional)
+
+If you need more granular fan control, try [Div Acer Manager](https://github.com/PXDiv/Div-Acer-Manager-Fan-Controls):
+```bash
+git clone https://github.com/PXDiv/Div-Acer-Manager-Fan-Controls
+cd Div-Acer-Manager-Fan-Controls
+sudo ./install.sh
+```
+
+## Contributing
+
+Found this helpful? Have improvements? PRs welcome!
+
+If this works on other Acer models, please open an issue to let me know.
+
+## Credits
+
+- Solution discovered while troubleshooting Acer Nitro V16 ANV16-41 (N24C4)
+- Thanks to the Linux community for GPU switching tools
+
+## License
+
+MIT License - Feel free to use and modify
+
+## Disclaimer
+
+⚠️ Use at your own risk. Always backup your data before running system scripts.
+⚠️ This script modifies system power management settings.
+```
+
+---
+
+## **File 3: LICENSE**
+```
+MIT License
+
+Copyright (c) 2026 [Your Name]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
