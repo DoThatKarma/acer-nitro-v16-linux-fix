@@ -10,6 +10,8 @@ After switching between desktop environments (Cinnamon/GNOME) or fresh OS instal
 - 🔋 **Poor battery life**
 - 🐌 **System feeling sluggish**
 
+This is also an issue for this laptop overall so i added a fix for Windows too, to make the Acer Nitro an affordable and powerful computer you can use in peace.
+
 ## ✅ Solution
 
 This script configures hybrid GPU mode properly, ensuring the **AMD integrated GPU is used by default** and NVIDIA GPU only activates when needed for gaming/intensive tasks.
