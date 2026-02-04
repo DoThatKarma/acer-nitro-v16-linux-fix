@@ -261,7 +261,7 @@ Having issues? [Open an issue](https://github.com/DoThatKarma/acer-nitro-v16-lin
 ```
 --
 
-Hope you enjoy this fix as much as me, it made the computer friendly to use in a quiet enviroment! Please stare and share if u liked it!
+Hope you enjoy this fix as much as me, it made the computer friendly to use in a quiet enviroment! Please star and share if u liked it!
 And let me know if u have some more fixes or comments! :)
 
 
