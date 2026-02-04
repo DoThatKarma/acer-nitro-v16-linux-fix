@@ -1,6 +1,6 @@
 # Acer Nitro V16 GPU & Fan Fix
 
-Fix for fans running at full speed on **Acer Nitro V16 (ANV16-41 / N24C4)** with AMD Ryzen + NVIDIA GPU hybrid graphics on **Linux** and **Windows**.
+Fix for fans running at full speed on **Acer Nitro V16 (ANV16-41 / N24C4)** especially with AMD Ryzen + NVIDIA GPU hybrid graphics on **Linux** and **Windows**. But probably usable for different models of Acer Nitro lineup.
 
 ## 🔥 Problem
 
